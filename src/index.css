@@ -1,0 +1,264 @@
+@import "tailwindcss";
+
+@theme {
+  /* Colors */
+  --color-surface-container-lowest: #0c0f0f;
+  --color-secondary-container: #af8d11;
+  --color-on-primary-fixed: #001947;
+  --color-on-secondary-container: #342800;
+  --color-surface-container-low: #1a1c1c;
+  --color-on-surface: #e2e2e2;
+  --color-on-secondary: #3c2f00;
+  --color-error: #ffb4ab;
+  --color-surface-container-highest: #333535;
+  --color-secondary-fixed-dim: #e9c349;
+  --color-on-tertiary-fixed: #021945;
+  --color-on-tertiary-fixed-variant: #344573;
+  --color-surface-container-high: #282a2b;
+  --color-outline-variant: #434652;
+  --color-on-primary-container: #8dadff;
+  --color-on-secondary-fixed-variant: #574500;
+  --color-surface-dim: #121414;
+  --color-surface: #121414;
+  --color-on-error: #690005;
+  --color-on-primary: #002c71;
+  --color-inverse-surface: #e2e2e2;
+  --color-tertiary: #b4c5fb;
+  --color-surface-variant: #333535;
+  --color-outline: #8e909d;
+  --color-tertiary-fixed: #dae2ff;
+  --color-on-surface-variant: #c4c6d3;
+  --color-on-error-container: #ffdad6;
+  --color-inverse-on-surface: #2f3131;
+  --color-background: #121414;
+  --color-tertiary-container: #2f416e;
+  --color-primary-fixed: #dae2ff;
+  --color-inverse-primary: #345baf;
+  --color-secondary-fixed: #ffe088;
+  --color-primary-fixed-dim: #b1c5ff;
+  --color-on-tertiary: #1c2f5b;
+  --color-primary-container: #0b3d91;
+  --color-error-container: #93000a;
+  --color-surface-tint: #b1c5ff;
+  --color-on-background: #e2e2e2;
+  --color-on-secondary-fixed: #241a00;
+  --color-surface-container: #1e2020;
+  --color-on-primary-fixed-variant: #144296;
+  --color-surface-bright: #37393a;
+  --color-on-tertiary-container: #9caee2;
+  --color-tertiary-fixed-dim: #b4c5fb;
+  --color-secondary: #e9c349;
+  --color-primary: #b1c5ff;
+
+  /* Font families */
+  --font-playfair: "Playfair Display", serif;
+  --font-inter: "Inter", sans-serif;
+
+  /* Spacing */
+  --spacing-stack-sm: 8px;
+  --spacing-stack-lg: 48px;
+  --spacing-container-max: 1200px;
+  --spacing-stack-md: 24px;
+  --spacing-gutter: 24px;
+  --spacing-section-gap: 120px;
+  --spacing-margin-mobile: 20px;
+}
+
+* {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #121414;
+  color: #e2e2e2;
+  overflow-x: hidden;
+  font-family: "Inter", sans-serif;
+}
+
+/* Glass Card */
+.glass-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(233, 195, 73, 0.2);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card:hover {
+  transform: translateY(-12px);
+  border-color: rgba(233, 195, 73, 0.6);
+  box-shadow: 0 20px 40px rgba(11, 61, 145, 0.3);
+}
+
+.glass-card-static {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(233, 195, 73, 0.15);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card-static:hover {
+  border-color: rgba(233, 195, 73, 0.4);
+  box-shadow: 0 8px 32px rgba(11, 61, 145, 0.2);
+}
+
+/* Gold Shimmer */
+.gold-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.gold-shimmer::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(233, 195, 73, 0.1),
+    transparent
+  );
+  transform: rotate(45deg);
+  animation: shimmer 6s infinite;
+  z-index: 1;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%) rotate(45deg); }
+  100% { transform: translateX(100%) rotate(45deg); }
+}
+
+/* Particles */
+.particle {
+  position: absolute;
+  background: #e9c349;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0.4;
+  animation: float 20s infinite linear;
+}
+
+@keyframes float {
+  0% { transform: translateY(0) translateX(0); opacity: 0; }
+  50% { opacity: 0.6; }
+  100% { transform: translateY(-100vh) translateX(50px); opacity: 0; }
+}
+
+/* Pulse glow */
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* Scroll trigger */
+.scroll-trigger {
+  transition-property: opacity, transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 1000ms;
+}
+
+.scroll-trigger.visible {
+  opacity: 1 !important;
+  transform: translateY(0) translateX(0) scale(1) !important;
+}
+
+/* Hero fade in */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-fade-in-up-delay-1 {
+  animation: fadeInUp 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.3s forwards;
+  opacity: 0;
+}
+
+.animate-fade-in-up-delay-2 {
+  animation: fadeInUp 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.6s forwards;
+  opacity: 0;
+}
+
+.animate-fade-in-up-delay-3 {
+  animation: fadeInUp 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.9s forwards;
+  opacity: 0;
+}
+
+.animate-fade-in-up-delay-4 {
+  animation: fadeInUp 1.2s cubic-bezier(0.4, 0, 0.2, 1) 1.2s forwards;
+  opacity: 0;
+}
+
+/* Floating animation for ornamental elements */
+@keyframes gentleFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-gentle-float {
+  animation: gentleFloat 4s ease-in-out infinite;
+}
+
+/* Music bar animation */
+@keyframes musicBar {
+  0%, 100% { height: 4px; }
+  50% { height: 16px; }
+}
+
+.music-bar {
+  width: 3px;
+  background: #e9c349;
+  border-radius: 2px;
+  animation: musicBar 0.8s ease-in-out infinite;
+}
+
+.music-bar:nth-child(2) { animation-delay: 0.15s; }
+.music-bar:nth-child(3) { animation-delay: 0.3s; }
+.music-bar:nth-child(4) { animation-delay: 0.45s; }
+
+/* Countdown flip animation */
+@keyframes countPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* Copy success flash */
+@keyframes flashSuccess {
+  0% { background-color: rgba(233, 195, 73, 0.3); }
+  100% { background-color: transparent; }
+}
+
+.flash-success {
+  animation: flashSuccess 0.6s ease-out;
+}
+
+/* Form focus ring */
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: #e9c349 !important;
+  box-shadow: 0 0 0 2px rgba(233, 195, 73, 0.2);
+}
+
+/* Hide scrollbar for sections */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
