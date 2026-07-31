@@ -1,27 +1,23 @@
-import { useEffect, useCallback, useState } from 'react';
-import Navbar from './components/Navbar';
-import SideNav from './components/SideNav';
-import Particles from './components/Particles';
-import HeroSection from './components/HeroSection';
-import ProfileCard from './components/ProfileCard';
-import MiddleOrnament from './components/MiddleOrnament';
-import QuoteSection from './components/QuoteSection';
-import CountdownTimer from './components/CountdownTimer';
-import EventSection from './components/EventSection';
-import RSVPSection from './components/RSVPSection';
-import GiftSection from './components/GiftSection';
-import MusicPlayer from './components/MusicPlayer';
-import Footer from './components/Footer';
-import BottomNav from './components/BottomNav';
-
-const GROOM_IMAGE =
-  'https://lh3.googleusercontent.com/aida-public/AB6AXuCXAzxooHr3jxQW-LRgddwxqYouybghczUmLx7Ag60iuhcTvcpPhjE_bcupemXB1m68nyFHeA4E1KK1bqyalBynUkI_bzrzfhj4BiY_4QKy4Nh3THjbmmUT-AO66P189VTE7Yds-78-mYh7U-6sLKIQQuf0uPyH4UgETlk1XkWJdjeHAn1yJsD-ObHE3QlMtOEouVrhavi4PKyo48wzf02W6pKQqNsSZmpGkXwj2uyKdLd6D5MSnzLL';
-
-const BRIDE_IMAGE =
-  'https://lh3.googleusercontent.com/aida-public/AB6AXuAVv-gNvS3EpxFKBBM4-wd-_kWxl4PVhk_wSrtBjpMpiCWLVhwnXENgRv_9U_4TiZozsIA18TGW4sT7az_tSQFlK41pIOz-rjFbgtazqejAdHR8VMRXpg7sR3C8krLa_e1hrmW7-HGdNnpvMcOdu-rHCrxot38_TLqP1ZVZ3eBSvrMoNgLScOJKqJoXGF5VjI9l-qqcfc_-Cj-MEDb707PQMBA1Y5rk_8AVY3K5mUpBerkfyqQKlPNa';
+import { useEffect, useCallback, useState } from "react";
+import Navbar from "./components/Navbar";
+import SideNav from "./components/SideNav";
+import Particles from "./components/Particles";
+import HeroSection from "./components/HeroSection";
+import ProfileCard from "./components/ProfileCard";
+import MiddleOrnament from "./components/MiddleOrnament";
+import QuoteSection from "./components/QuoteSection";
+import CountdownTimer from "./components/CountdownTimer";
+import EventSection from "./components/EventSection";
+import RSVPSection from "./components/RSVPSection";
+import GiftSection from "./components/GiftSection";
+import MusicPlayer from "./components/MusicPlayer";
+import Footer from "./components/Footer";
+import BottomNav from "./components/BottomNav";
+import GROOM_IMAGE from "@assets/Laki_laki.png";
+import BRIDE_IMAGE from "@assets/Perempuan.png";
 
 export default function App() {
-  const [activeSection, setActiveSection] = useState('hero');
+  const [activeSection, setActiveSection] = useState("hero");
 
   // Scroll observer for animations
   const setupScrollObserver = useCallback(() => {
@@ -29,20 +25,22 @@ export default function App() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
+            entry.target.classList.add("visible");
           }
         });
       },
-      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+      { threshold: 0.1, rootMargin: "0px 0px -50px 0px" },
     );
 
-    document.querySelectorAll('.scroll-trigger').forEach((el) => observer.observe(el));
+    document
+      .querySelectorAll(".scroll-trigger")
+      .forEach((el) => observer.observe(el));
     return () => observer.disconnect();
   }, []);
 
   // Section tracking for active nav
   const setupSectionObserver = useCallback(() => {
-    const sections = ['hero', 'couple', 'akad', 'resepsi', 'rsvp', 'gift'];
+    const sections = ["hero", "couple", "akad", "resepsi", "rsvp", "gift"];
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -51,7 +49,7 @@ export default function App() {
           }
         });
       },
-      { threshold: 0.3, rootMargin: '-80px 0px -30% 0px' }
+      { threshold: 0.3, rootMargin: "-80px 0px -30% 0px" },
     );
 
     sections.forEach((id) => {
@@ -66,20 +64,24 @@ export default function App() {
   const setupParallax = useCallback(() => {
     const handleScroll = () => {
       const scrolled = window.pageYOffset;
-      const bloom = document.querySelector('.bloom-bg') as HTMLElement | null;
+      const bloom = document.querySelector(".bloom-bg") as HTMLElement | null;
       if (bloom) {
         bloom.style.transform = `translate(-50%, ${scrolled * 0.15}px)`;
       }
     };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
     const c1 = setupScrollObserver();
     const c2 = setupSectionObserver();
     const c3 = setupParallax();
-    return () => { c1(); c2(); c3(); };
+    return () => {
+      c1();
+      c2();
+      c3();
+    };
   }, [setupScrollObserver, setupSectionObserver, setupParallax]);
 
   return (
@@ -160,11 +162,14 @@ export default function App() {
           {/* Decorative Ornament */}
           <div
             className="mt-24 flex justify-center items-center gap-8 scroll-trigger opacity-0 translate-y-10"
-            style={{ transitionDelay: '1000ms' }}
+            style={{ transitionDelay: "1000ms" }}
           >
             <div className="h-px w-24 md:w-48 bg-gradient-to-r from-transparent to-secondary/30" />
             <div className="text-secondary opacity-50">
-              <span className="material-symbols-outlined text-4xl" style={{ fontVariationSettings: "'FILL' 1" }}>
+              <span
+                className="material-symbols-outlined text-4xl"
+                style={{ fontVariationSettings: "'FILL' 1" }}
+              >
                 star
               </span>
             </div>
