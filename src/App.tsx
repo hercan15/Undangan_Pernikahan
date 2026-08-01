@@ -117,173 +117,173 @@ export default function App() {
       <MessagesProvider>
         <RecipientProvider>
           <div className="font-inter text-[16px] leading-[1.6]">
-          {/* ==================== HERO (tampilan awal) ==================== */}
-          <HeroSection onOpen={handleOpen} />
+            {/* ==================== HERO (tampilan awal) ==================== */}
+            <HeroSection onOpen={handleOpen} />
 
-          {/* ==================== SELURUH KONTEN — tampil setelah klik ==================== */}
-          {opened && (
-            <>
-              <Navbar activeSection={activeSection} />
+            {/* ==================== SELURUH KONTEN — tampil setelah klik ==================== */}
+            {opened && (
+              <>
+                <Navbar activeSection={activeSection} />
 
-              {/* Side Navigation (Desktop) */}
-              <SideNav activeSection={activeSection} />
+                {/* Side Navigation (Desktop) */}
+                <SideNav activeSection={activeSection} />
 
-              {/* Music Player */}
-              <MusicPlayer />
+                {/* Music Player */}
+                <MusicPlayer />
 
-              {/* Particles - global */}
-              <div className="fixed inset-0 pointer-events-none z-0">
-                <Particles />
-              </div>
+                {/* Particles - global */}
+                <div className="fixed inset-0 pointer-events-none z-0">
+                  <Particles />
+                </div>
 
-              {/* ==================== COUPLE ==================== */}
-              <section
-                id="couple"
-                className="relative py-section-gap overflow-hidden"
-              >
-                {/* Background */}
-                <div className="absolute inset-0 z-0 bg-gradient-to-b from-surface via-primary-container/5 to-surface" />
-                <div className="bloom-bg absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-primary-container/8 blur-[120px] rounded-full pointer-events-none" />
+                {/* ==================== COUPLE ==================== */}
+                <section
+                  id="couple"
+                  className="relative py-section-gap overflow-hidden"
+                >
+                  {/* Background */}
+                  <div className="absolute inset-0 z-0 bg-gradient-to-b from-surface via-primary-container/5 to-surface" />
+                  <div className="bloom-bg absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-primary-container/8 blur-[120px] rounded-full pointer-events-none" />
 
-                <div className="relative z-10 max-w-[1200px] mx-auto px-gutter">
-                  {/* Section Header with Quote */}
-                  <div className="text-center mb-16 md:mb-20 scroll-trigger opacity-0 translate-y-10">
-                    <span className="font-inter text-[14px] leading-[1.2] tracking-[0.3em] font-semibold text-secondary uppercase block mb-4">
-                      QS. Ar-Rum: 21
-                    </span>
-                    <h2 className="font-playfair text-[40px] md:text-[56px] leading-[1.1] tracking-[-0.02em] font-bold text-on-surface mb-8">
-                      Calon Mempelai
-                    </h2>
-                  </div>
-
-                  {/* Quote */}
-                  <QuoteSection />
-
-                  {/* Profiles Grid */}
-                  <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr] items-center gap-12 lg:gap-8 mt-16">
-                    {/* Groom */}
-                    <ProfileCard
-                      name="Swandi"
-                      role="Mempelai Pria"
-                      roleLabel="Putra dari"
-                      fatherName="Basri"
-                      motherName="Yati"
-                      childOrder="Mempelai Pria"
-                      imageSrc={GROOM_IMAGE}
-                      imageAlt="Portrait of Swandi, the groom"
-                      align="right"
-                      animationClass="-translate-x-10"
-                      delay="300ms"
-                    />
-
-                    {/* Middle Ornament */}
-                    <MiddleOrnament />
-
-                    {/* Bride */}
-                    <ProfileCard
-                      name="Dirawati"
-                      role="Mempelai Wanita"
-                      roleLabel="Putri dari"
-                      fatherName="Asri"
-                      motherName="Radia"
-                      childOrder="Mempelai Wanita"
-                      imageSrc={BRIDE_IMAGE}
-                      imageAlt="Portrait of Dirawati, the bride"
-                      align="left"
-                      animationClass="translate-x-10"
-                      delay="700ms"
-                    />
-                  </div>
-
-                  {/* Decorative Ornament */}
-                  <div
-                    className="mt-24 flex justify-center items-center gap-8 scroll-trigger opacity-0 translate-y-10"
-                    style={{ transitionDelay: "1000ms" }}
-                  >
-                    <div className="h-px w-24 md:w-48 bg-gradient-to-r from-transparent to-secondary/30" />
-                    <div className="text-secondary opacity-50">
-                      <span
-                        className="material-symbols-outlined text-4xl"
-                        style={{ fontVariationSettings: "'FILL' 1" }}
-                      >
-                        star
+                  <div className="relative z-10 max-w-[1200px] mx-auto px-gutter">
+                    {/* Section Header with Quote */}
+                    <div className="text-center mb-16 md:mb-20 scroll-trigger opacity-0 translate-y-10">
+                      <span className="font-inter text-[14px] leading-[1.2] tracking-[0.3em] font-semibold text-secondary uppercase block mb-4">
+                        QS. Ar-Rum: 21
                       </span>
+                      <h2 className="font-playfair text-[40px] md:text-[56px] leading-[1.1] tracking-[-0.02em] font-bold text-on-surface mb-8">
+                        Calon Mempelai
+                      </h2>
                     </div>
-                    <div className="h-px w-24 md:w-48 bg-gradient-to-l from-transparent to-secondary/30" />
+
+                    {/* Quote */}
+                    <QuoteSection />
+
+                    {/* Profiles Grid */}
+                    <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr] items-center gap-12 lg:gap-8 mt-16">
+                      {/* Groom */}
+                      <ProfileCard
+                        name="Swandi"
+                        role="Mempelai Pria"
+                        roleLabel="Putra dari"
+                        fatherName="Basri"
+                        motherName="Yati"
+                        childOrder="Mempelai Pria"
+                        imageSrc={GROOM_IMAGE}
+                        imageAlt="Portrait of Swandi, the groom"
+                        align="right"
+                        animationClass="-translate-x-10"
+                        delay="300ms"
+                      />
+
+                      {/* Middle Ornament */}
+                      <MiddleOrnament />
+
+                      {/* Bride */}
+                      <ProfileCard
+                        name="Dirawati"
+                        role="Mempelai Wanita"
+                        roleLabel="Putri dari"
+                        fatherName="Asri"
+                        motherName="Radia"
+                        childOrder="Mempelai Wanita"
+                        imageSrc={BRIDE_IMAGE}
+                        imageAlt="Portrait of Dirawati, the bride"
+                        align="left"
+                        animationClass="translate-x-10"
+                        delay="700ms"
+                      />
+                    </div>
+
+                    {/* Decorative Ornament */}
+                    <div
+                      className="mt-24 flex justify-center items-center gap-8 scroll-trigger opacity-0 translate-y-10"
+                      style={{ transitionDelay: "1000ms" }}
+                    >
+                      <div className="h-px w-24 md:w-48 bg-gradient-to-r from-transparent to-secondary/30" />
+                      <div className="text-secondary opacity-50">
+                        <span
+                          className="material-symbols-outlined text-4xl"
+                          style={{ fontVariationSettings: "'FILL' 1" }}
+                        >
+                          star
+                        </span>
+                      </div>
+                      <div className="h-px w-24 md:w-48 bg-gradient-to-l from-transparent to-secondary/30" />
+                    </div>
                   </div>
-                </div>
-              </section>
+                </section>
 
-              {/* ==================== COUNTDOWN ==================== */}
-              <section className="py-16 px-gutter">
-                <div className="max-w-[1200px] mx-auto">
-                  <CountdownTimer />
-                </div>
-              </section>
-
-              {/* ==================== EVENTS ==================== */}
-              <section className="py-section-gap px-gutter">
-                <div className="max-w-[1200px] mx-auto">
-                  {/* Section Header */}
-                  <div className="text-center mb-16 scroll-trigger opacity-0 translate-y-10">
-                    <span className="font-inter text-[14px] tracking-[0.3em] text-secondary uppercase font-semibold block mb-4">
-                      Rangkaian Acara
-                    </span>
-                    <h2 className="font-playfair text-[40px] md:text-[56px] leading-[1.1] tracking-[-0.02em] font-bold text-on-surface">
-                      Save The Date
-                    </h2>
+                {/* ==================== COUNTDOWN ==================== */}
+                <section className="py-16 px-gutter">
+                  <div className="max-w-[1200px] mx-auto">
+                    <CountdownTimer />
                   </div>
+                </section>
 
-                  {/* Events Grid */}
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
-                    <EventSection
-                      id="akad"
-                      label="Akad Nikah"
-                      title="Akad Nikah"
-                      date="Senin, 10 Agustus 2026"
-                      time="Pukul 10:00 WITA"
-                      location="Jeneponto"
-                      address="Kambang, Kab. Jeneponto, Sulawesi Selatan"
-                      mapsUrl="https://maps.app.goo.gl/Q5isD39EB8PeXJm57?g_st=aw"
-                      icon="mosque"
-                      delay="200ms"
-                    />
-                    <EventSection
-                      id="resepsi"
-                      label="Resepsi Pernikahan"
-                      title="Resepsi"
-                      date="Selasa, 11 Agustus 2026"
-                      time="Pukul 10:00 WITA"
-                      location="Makassar"
-                      address="Jln. Bontoduri 10, Blok 3, Makassar, Sulawesi Selatan"
-                      mapsUrl="https://maps.app.goo.gl/Q5isD39EB8PeXJm57?g_st=aw"
-                      icon="celebration"
-                      delay="400ms"
-                    />
+                {/* ==================== EVENTS ==================== */}
+                <section className="py-section-gap px-gutter">
+                  <div className="max-w-[1200px] mx-auto">
+                    {/* Section Header */}
+                    <div className="text-center mb-16 scroll-trigger opacity-0 translate-y-10">
+                      <span className="font-inter text-[14px] tracking-[0.3em] text-secondary uppercase font-semibold block mb-4">
+                        Rangkaian Acara
+                      </span>
+                      <h2 className="font-playfair text-[40px] md:text-[56px] leading-[1.1] tracking-[-0.02em] font-bold text-on-surface">
+                        Save The Date
+                      </h2>
+                    </div>
+
+                    {/* Events Grid */}
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+                      <EventSection
+                        id="akad"
+                        label="Akad Nikah"
+                        title="Akad Nikah"
+                        date="Senin, 10 Agustus 2026"
+                        time="Pukul 10:00 WITA"
+                        location="Jeneponto"
+                        address="Kambang, Kab. Jeneponto, Sulawesi Selatan"
+                        mapsUrl="https://maps.app.goo.gl/Q5isD39EB8PeXJm57?g_st=aw"
+                        icon="mosque"
+                        delay="200ms"
+                      />
+                      <EventSection
+                        id="resepsi"
+                        label="Resepsi Pernikahan"
+                        title="Resepsi"
+                        date="Selasa, 11 Agustus 2026"
+                        time="Pukul 10:00 WITA"
+                        location="Makassar"
+                        address="Jln. Bontoduri 10, Blok 3, Makassar, Sulawesi Selatan"
+                        mapsUrl="https://maps.app.goo.gl/Q5isD39EB8PeXJm57?g_st=aw"
+                        icon="celebration"
+                        delay="400ms"
+                      />
+                    </div>
                   </div>
-                </div>
-              </section>
+                </section>
 
-              {/* ==================== GALLERY ==================== */}
-              <GallerySection />
+                {/* ==================== GALLERY ==================== */}
+                <GallerySection />
 
-              {/* ==================== RSVP ==================== */}
-              <RSVPSection />
+                {/* ==================== RSVP ==================== */}
+                <RSVPSection />
 
-              {/* ==================== UCAPAN & DOA ==================== */}
-              <UcapanSection />
+                {/* ==================== UCAPAN & DOA ==================== */}
+                <UcapanSection />
 
-              {/* ==================== GIFT ==================== */}
-              <GiftSection />
+                {/* ==================== GIFT ==================== */}
+                <GiftSection />
 
-              {/* ==================== FOOTER ==================== */}
-              <Footer />
+                {/* ==================== FOOTER ==================== */}
+                <Footer />
 
-              {/* Bottom Navigation (Mobile) */}
-              <BottomNav activeSection={activeSection} />
-            </>
-          )}
-        </div>
+                {/* Bottom Navigation (Mobile) */}
+                <BottomNav activeSection={activeSection} />
+              </>
+            )}
+          </div>
         </RecipientProvider>
       </MessagesProvider>
     </MusicProvider>
