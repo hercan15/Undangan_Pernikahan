@@ -1,5 +1,5 @@
-import { useMemo } from "react";
 import { useMusic } from "../context/MusicContext";
+import { useRecipient } from "../context/RecipientContext";
 
 interface HeroSectionProps {
   onOpen?: () => void;
@@ -7,14 +7,7 @@ interface HeroSectionProps {
 
 export default function HeroSection({ onOpen }: HeroSectionProps) {
   const { play } = useMusic();
-
-  const recipient = useMemo(() => {
-    const params = new URLSearchParams(
-      typeof window !== "undefined" ? window.location.search : "",
-    );
-    return params.get("to") || params.get("name") || params.get("guest") || "";
-  }, []);
-  const greeting = recipient || "Bapak/Ibu/Saudara/i";
+  const { greeting } = useRecipient();
 
   return (
     <section

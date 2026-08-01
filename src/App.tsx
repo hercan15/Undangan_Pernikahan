@@ -15,6 +15,7 @@ import Footer from "./components/Footer";
 import BottomNav from "./components/BottomNav";
 import { MusicProvider } from "./context/MusicContext";
 import { MessagesProvider } from "./context/MessagesContext";
+import { RecipientProvider } from "./context/RecipientContext";
 import UcapanSection from "./components/UcapanSection";
 import GallerySection from "./components/GallerySection";
 import GROOM_IMAGE from "@assets/Laki_laki.png";
@@ -114,7 +115,8 @@ export default function App() {
   return (
     <MusicProvider>
       <MessagesProvider>
-        <div className="font-inter text-[16px] leading-[1.6]">
+        <RecipientProvider>
+          <div className="font-inter text-[16px] leading-[1.6]">
           {/* ==================== HERO (tampilan awal) ==================== */}
           <HeroSection onOpen={handleOpen} />
 
@@ -282,6 +284,7 @@ export default function App() {
             </>
           )}
         </div>
+        </RecipientProvider>
       </MessagesProvider>
     </MusicProvider>
   );

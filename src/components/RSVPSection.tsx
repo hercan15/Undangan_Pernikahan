@@ -1,8 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useMessages } from "../context/MessagesContext";
+import { useRecipient } from "../context/RecipientContext";
 
 export default function RSVPSection() {
   const [name, setName] = useState("");
+  const { recipient: urlRecipient } = useRecipient();
+
+  useEffect(() => {
+    if (urlRecipient && !name) {
+      setName(urlRecipient);
+    }
+  }, [urlRecipient]);
   const [attendance, setAttendance] = useState("hadir");
   const [guests, setGuests] = useState("1");
   const [message, setMessage] = useState("");
