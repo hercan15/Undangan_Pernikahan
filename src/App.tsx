@@ -262,25 +262,6 @@ export default function App() {
                 </div>
               </section>
 
-              {/* ==================== MAP EMBED ==================== */}
-              <section className="py-12 px-gutter">
-                <div className="max-w-[800px] mx-auto scroll-trigger opacity-0 translate-y-10">
-                  <div className="glass-card-static rounded-2xl overflow-hidden">
-                    <iframe
-                      src="https://maps.app.goo.gl/Q5isD39EB8PeXJm57?g_st=aw"
-                      width="100%"
-                      height="350"
-                      style={{ border: 0 }}
-                      allowFullScreen
-                      loading="lazy"
-                      referrerPolicy="no-referrer-when-downgrade"
-                      title="Location Map"
-                      className="w-full"
-                    />
-                  </div>
-                </div>
-              </section>
-
               {/* ==================== GALLERY ==================== */}
               <GallerySection />
 
