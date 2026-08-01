@@ -1,54 +1,20 @@
-import { useState, useRef, useEffect } from 'react';
+import { useMusic } from "../context/MusicContext";
 
 export default function MusicPlayer() {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [hasInteracted, setHasInteracted] = useState(false);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
-
-  useEffect(() => {
-    // Create audio element
-    const audio = new Audio();
-    // Use a placeholder - in production this would be the actual song URL
-    // "Selamanya Cinta" by Bunga Citra Lestari
-    audio.loop = true;
-    audio.volume = 0.3;
-    audioRef.current = audio;
-
-    return () => {
-      audio.pause();
-      audio.src = '';
-    };
-  }, []);
-
-  const togglePlay = () => {
-    if (!hasInteracted) {
-      setHasInteracted(true);
-    }
-
-    if (audioRef.current) {
-      if (isPlaying) {
-        audioRef.current.pause();
-      } else {
-        audioRef.current.play().catch(() => {
-          // Audio play failed, likely no source
-        });
-      }
-    }
-    setIsPlaying(!isPlaying);
-  };
+  const { isPlaying, hasInteracted, toggle } = useMusic();
 
   return (
     <button
-      onClick={togglePlay}
+      onClick={toggle}
       className="fixed bottom-20 md:bottom-6 left-4 md:left-6 z-50 group cursor-pointer"
-      title={isPlaying ? 'Pause Music' : 'Play Music - Selamanya Cinta (BCL)'}
+      title={isPlaying ? "Pause Music" : "Play Music"}
     >
       <div className="relative flex items-center gap-2">
         {/* Main button */}
         <div className={`w-12 h-12 rounded-full flex items-center justify-center border transition-all duration-300 ${
-          isPlaying 
-            ? 'bg-secondary/20 border-secondary/50 shadow-lg shadow-secondary/20' 
-            : 'bg-surface-container border-secondary/30 hover:border-secondary/60'
+          isPlaying
+            ? "bg-secondary/20 border-secondary/50 shadow-lg shadow-secondary/20"
+            : "bg-surface-container border-secondary/30 hover:border-secondary/60"
         }`}>
           {isPlaying ? (
             <div className="flex items-center gap-[3px] h-5">
@@ -58,7 +24,10 @@ export default function MusicPlayer() {
               <div className="music-bar" />
             </div>
           ) : (
-            <span className="material-symbols-outlined text-secondary text-[22px]" style={{ fontVariationSettings: "'FILL' 1" }}>
+            <span
+              className="material-symbols-outlined text-secondary text-[22px]"
+              style={{ fontVariationSettings: "'FILL' 1" }}
+            >
               music_note
             </span>
           )}

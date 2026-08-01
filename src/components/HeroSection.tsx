@@ -1,4 +1,11 @@
-export default function HeroSection() {
+import { useMusic } from "../context/MusicContext";
+
+interface HeroSectionProps {
+  onOpen?: () => void;
+}
+
+export default function HeroSection({ onOpen }: HeroSectionProps) {
+  const { play } = useMusic();
   return (
     <section id="hero" className="relative min-h-screen flex flex-col items-center justify-center text-center overflow-hidden px-gutter">
       {/* Background */}
@@ -63,8 +70,8 @@ export default function HeroSection() {
         <div className="animate-fade-in-up-delay-4">
           <button 
             onClick={() => {
-              const el = document.getElementById('couple');
-              if (el) el.scrollIntoView({ behavior: 'smooth' });
+              play();
+              onOpen?.();
             }}
             className="group flex items-center gap-2 bg-secondary/10 border border-secondary/30 text-secondary px-8 py-3 rounded-full font-inter text-[14px] tracking-[0.1em] font-semibold uppercase hover:bg-secondary hover:text-on-secondary transition-all duration-300 cursor-pointer"
           >

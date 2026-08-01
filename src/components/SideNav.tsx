@@ -13,6 +13,8 @@ export default function SideNav({ activeSection }: SideNavProps) {
     { id: 'akad', icon: 'mosque', label: 'Akad' },
     { id: 'resepsi', icon: 'celebration', label: 'Resepsi' },
     { id: 'rsvp', icon: 'mail', label: 'RSVP' },
+    { id: 'gallery', icon: 'photo_library', label: 'Galeri' },
+    { id: 'ucapan', icon: 'forum', label: 'Ucapan' },
     { id: 'gift', icon: 'redeem', label: 'Gift' },
   ];
 

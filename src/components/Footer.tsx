@@ -15,7 +15,10 @@ export default function Footer() {
         {/* Divider */}
         <div className="flex items-center gap-3 mb-6">
           <div className="h-px w-16 bg-gradient-to-r from-transparent to-secondary/20" />
-          <span className="material-symbols-outlined text-secondary/30 text-[14px]" style={{ fontVariationSettings: "'FILL' 1" }}>
+          <span
+            className="material-symbols-outlined text-secondary/30 text-[14px]"
+            style={{ fontVariationSettings: "'FILL' 1" }}
+          >
             star
           </span>
           <div className="h-px w-16 bg-gradient-to-l from-transparent to-secondary/20" />
@@ -23,7 +26,8 @@ export default function Footer() {
 
         {/* Thank you message */}
         <p className="font-inter text-[14px] text-on-surface-variant/80 mb-6 max-w-md italic">
-          "Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu."
+          "Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila
+          Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu."
         </p>
 
         {/* Wassalamu'alaikum */}
@@ -35,8 +39,41 @@ export default function Footer() {
 
         {/* Copyright */}
         <p className="text-on-surface-variant font-inter text-[13px] leading-[1.6] opacity-40">
-          © 2026 Andi &amp; Dira — May Allah bless this union.
+          © 2026 Andi &amp; Dira — Baarakallahu lakumaa wa baaraka 'alaikumaa wa
+          jama'a bainakumaa fii khair.
         </p>
+
+        {/* Divider */}
+        <div className="flex items-center gap-3 mt-8 mb-6 justify-center">
+          <div className="h-px w-16 bg-gradient-to-r from-transparent to-secondary/20" />
+          <span
+            className="material-symbols-outlined text-secondary/40 text-[14px]"
+            style={{ fontVariationSettings: "'FILL' 1" }}
+          >
+            star
+          </span>
+          <div className="h-px w-16 bg-gradient-to-l from-transparent to-secondary/20" />
+        </div>
+
+        {/* Designed by BTAFAMS */}
+        <div className="text-center mb-2">
+          <p className="font-playfair text-[18px] md:text-[20px] text-secondary font-medium tracking-wider">
+            Designed by BTAFAMS
+          </p>
+          <p className="font-inter text-[13px] text-on-surface-variant/70">
+            Custom Wedding Invitation Website
+          </p>
+        </div>
+
+        {/* Contact */}
+        <a
+          href="https://wa.me/6287760698669"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center justify-center gap-2 font-inter text-[14px] text-on-surface-variant hover:text-secondary transition-colors"
+        >
+          WhatsApp : 0877-6069-8669
+        </a>
       </div>
     </footer>
   );

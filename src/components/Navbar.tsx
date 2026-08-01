@@ -21,6 +21,8 @@ export default function Navbar({ activeSection }: NavbarProps) {
     { id: 'akad', label: 'Akad Nikah' },
     { id: 'resepsi', label: 'Resepsi' },
     { id: 'rsvp', label: 'RSVP' },
+    { id: 'gallery', label: 'Galeri Photo' },
+    { id: 'ucapan', label: 'Ucapan & Doa' },
   ];
 
   const scrollTo = (id: string) => {
