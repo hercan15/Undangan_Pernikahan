@@ -5,6 +5,7 @@ import {
   useState,
   type ReactNode,
 } from "react";
+import { supabase } from "../utils/supabase";
 
 export type Attendance = "hadir" | "tidak";
 
@@ -17,23 +18,6 @@ export interface GuestMessage {
   time: number;
 }
 
-const STORAGE_KEY = "rsvp_messages";
-
-function loadMessages(): GuestMessage[] {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    return raw ? (JSON.parse(raw) as GuestMessage[]) : [];
-  } catch {
-    return [];
-  }
-}
-
-function saveMessages(msgs: GuestMessage[]) {
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(msgs));
-  } catch {}
-}
-
 interface MessagesContextType {
   messages: GuestMessage[];
   addMessage: (msg: {
@@ -41,7 +25,8 @@ interface MessagesContextType {
     attendance: Attendance;
     guests?: string;
     message: string;
-  }) => void;
+  }) => Promise<void>;
+  loading: boolean;
 }
 
 const MessagesContext = createContext<MessagesContextType | undefined>(undefined);
@@ -55,31 +40,74 @@ export function useMessages() {
 }
 
 export function MessagesProvider({ children }: { children: ReactNode }) {
-  const [messages, setMessages] = useState<GuestMessage[]>(() => loadMessages());
+  const [messages, setMessages] = useState<GuestMessage[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    saveMessages(messages);
-  }, [messages]);
+    fetchMessages();
+  }, []);
 
-  const addMessage = (msg: {
+  const fetchMessages = async () => {
+    try {
+      const { data, error } = await supabase
+        .from("guest_messages")
+        .select("*")
+        .order("created_at", { ascending: false });
+
+      if (error) throw error;
+
+      const formatted: GuestMessage[] = (data || []).map((row: any) => ({
+        id: row.id,
+        name: row.name,
+        attendance: row.attendance,
+        guests: row.guests || undefined,
+        message: row.message,
+        time: new Date(row.created_at).getTime(),
+      }));
+
+      setMessages(formatted);
+    } catch (err) {
+      console.error("Failed to fetch messages:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const addMessage = async (msg: {
     name: string;
     attendance: Attendance;
     guests?: string;
     message: string;
   }) => {
-    const entry: GuestMessage = {
-      id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+    const entry = {
       name: msg.name.trim(),
       attendance: msg.attendance,
-      guests: msg.guests,
+      guests: msg.attendance === "hadir" ? msg.guests || "1" : null,
       message: msg.message.trim() || "-",
-      time: Date.now(),
     };
-    setMessages((prev) => [entry, ...prev]);
+
+    const { data, error } = await supabase
+      .from("guest_messages")
+      .insert([entry])
+      .select()
+      .single();
+
+    if (error) throw error;
+
+    const newMessage: GuestMessage = {
+      id: data.id,
+      name: data.name,
+      attendance: data.attendance,
+      guests: data.guests || undefined,
+      message: data.message,
+      time: new Date(data.created_at).getTime(),
+    };
+
+    setMessages((prev) => [newMessage, ...prev]);
   };
 
   return (
-    <MessagesContext.Provider value={{ messages, addMessage }}>
+    <MessagesContext.Provider value={{ messages, addMessage, loading }}>
       {children}
     </MessagesContext.Provider>
   );

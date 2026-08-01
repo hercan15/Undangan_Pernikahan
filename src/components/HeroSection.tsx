@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { useMusic } from "../context/MusicContext";
 
 interface HeroSectionProps {
@@ -6,8 +7,20 @@ interface HeroSectionProps {
 
 export default function HeroSection({ onOpen }: HeroSectionProps) {
   const { play } = useMusic();
+
+  const recipient = useMemo(() => {
+    const params = new URLSearchParams(
+      typeof window !== "undefined" ? window.location.search : "",
+    );
+    return params.get("to") || params.get("name") || params.get("guest") || "";
+  }, []);
+  const greeting = recipient || "Bapak/Ibu/Saudara/i";
+
   return (
-    <section id="hero" className="relative min-h-screen flex flex-col items-center justify-center text-center overflow-hidden px-gutter">
+    <section
+      id="hero"
+      className="relative min-h-screen flex flex-col items-center justify-center text-center overflow-hidden px-gutter"
+    >
       {/* Background */}
       <div className="absolute inset-0 z-0 bg-gradient-to-b from-primary-container/25 via-surface to-surface" />
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-primary-container/15 blur-[150px] rounded-full pointer-events-none" />
@@ -31,8 +44,10 @@ export default function HeroSection({ onOpen }: HeroSectionProps) {
         {/* We Invite You */}
         <div className="animate-fade-in-up-delay-2 mb-10">
           <p className="font-inter text-[16px] md:text-[18px] text-on-surface/70 mb-4">
-            Dengan memohon Rahmat dan Ridho Allah SWT,<br/>
-            kami mengundang Bapak/Ibu/Saudara/i untuk hadir di acara pernikahan kami
+            Dengan memohon Rahmat dan Ridho Allah SWT,
+            <br />
+            kami mengundang Bapak/Ibu/Saudara/i untuk hadir di acara pernikahan
+            kami
           </p>
         </div>
 
@@ -66,16 +81,27 @@ export default function HeroSection({ onOpen }: HeroSectionProps) {
           </p>
         </div>
 
+        {/* Kepada Yth — nama diambil dari query string (mis. ?to=Nama) */}
+        <div className="animate-fade-in-up-delay-3 mb-4 text-center">
+          <p className="font-inter text-[16px] md:text-[18px] text-on-surface/70">
+            Kepada Yth:{" "}
+            <span className="text-secondary font-medium">{greeting}</span>
+          </p>
+        </div>
+
         {/* Save the Date Button */}
-        <div className="animate-fade-in-up-delay-4">
-          <button 
+        <div className="animate-fade-in-up-delay-4 mb-4">
+          <button
             onClick={() => {
               play();
               onOpen?.();
             }}
             className="group flex items-center gap-2 bg-secondary/10 border border-secondary/30 text-secondary px-8 py-3 rounded-full font-inter text-[14px] tracking-[0.1em] font-semibold uppercase hover:bg-secondary hover:text-on-secondary transition-all duration-300 cursor-pointer"
           >
-            <span className="material-symbols-outlined text-[20px]" style={{ fontVariationSettings: "'FILL' 1" }}>
+            <span
+              className="material-symbols-outlined text-[20px]"
+              style={{ fontVariationSettings: "'FILL' 1" }}
+            >
               favorite
             </span>
             Buka Undangan
@@ -83,6 +109,9 @@ export default function HeroSection({ onOpen }: HeroSectionProps) {
               keyboard_arrow_down
             </span>
           </button>
+          <p className="mt-3 font-inter text-[15px] md:text-[16px] text-secondary/90 text-center">
+            Di tempat
+          </p>
         </div>
       </div>
 
