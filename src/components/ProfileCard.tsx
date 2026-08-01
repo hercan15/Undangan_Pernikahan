@@ -1,4 +1,4 @@
-import InstagramIcon from './InstagramIcon';
+import InstagramIcon from "./InstagramIcon";
 
 interface ProfileCardProps {
   name: string;
@@ -6,10 +6,9 @@ interface ProfileCardProps {
   roleLabel: string;
   fatherName: string;
   motherName: string;
-  childOrder: string;
   imageSrc: string;
   imageAlt: string;
-  align: 'left' | 'right';
+  align: "left" | "right";
   animationClass: string;
   delay: string;
 }
@@ -20,21 +19,20 @@ export default function ProfileCard({
   roleLabel,
   fatherName,
   motherName,
-  childOrder,
   imageSrc,
   imageAlt,
   align,
   animationClass,
   delay,
 }: ProfileCardProps) {
-  const isGroom = align === 'right';
+  const isGroom = align === "right";
 
   return (
     <div
       className={`flex flex-col items-center ${
-        isGroom ? 'lg:items-end' : 'lg:items-start'
+        isGroom ? "lg:items-end" : "lg:items-start"
       } text-center ${
-        isGroom ? 'lg:text-right' : 'lg:text-left'
+        isGroom ? "lg:text-right" : "lg:text-left"
       } scroll-trigger opacity-0 ${animationClass}`}
       style={{ transitionDelay: delay }}
     >
@@ -49,7 +47,7 @@ export default function ProfileCard({
         </div>
         <a
           className={`absolute bottom-4 ${
-            isGroom ? 'right-4' : 'left-4'
+            isGroom ? "right-4" : "left-4"
           } bg-surface-container-high/80 backdrop-blur-md p-2 rounded-full border border-secondary/30 hover:bg-secondary hover:text-on-secondary transition-all z-10`}
           href="#"
         >
@@ -67,16 +65,17 @@ export default function ProfileCard({
         {role}
       </p>
 
-      {/* Child order */}
-      <p className="font-inter text-[14px] text-on-surface/50 mb-2 italic">
-        {childOrder}
-      </p>
-
       {/* Parents */}
       <div className="font-inter text-[15px] leading-[1.7] text-on-surface/60 max-w-xs">
         <p>{roleLabel}</p>
-        <p>Bapak <span className="text-on-surface/80 font-medium">{fatherName}</span></p>
-        <p>&amp; Ibu <span className="text-on-surface/80 font-medium">{motherName}</span></p>
+        <p>
+          Bapak{" "}
+          <span className="text-on-surface/80 font-medium">{fatherName}</span>
+        </p>
+        <p>
+          &amp; Ibu{" "}
+          <span className="text-on-surface/80 font-medium">{motherName}</span>
+        </p>
       </div>
     </div>
   );

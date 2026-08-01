@@ -168,7 +168,6 @@ export default function App() {
                         roleLabel="Putra dari"
                         fatherName="Basri"
                         motherName="Yati"
-                        childOrder="Mempelai Pria"
                         imageSrc={GROOM_IMAGE}
                         imageAlt="Portrait of Swandi, the groom"
                         align="right"
@@ -186,7 +185,6 @@ export default function App() {
                         roleLabel="Putri dari"
                         fatherName="Asri"
                         motherName="Radia"
-                        childOrder="Mempelai Wanita"
                         imageSrc={BRIDE_IMAGE}
                         imageAlt="Portrait of Dirawati, the bride"
                         align="left"

@@ -19,6 +19,7 @@ const photos: Photo[] = [
 
 export default function GallerySection() {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const dragStart = useRef<{ x: number; scrollLeft: number } | null>(null);
 
   const scrollByDir = (dir: number) => {
     const el = scrollRef.current;
@@ -26,6 +27,30 @@ export default function GallerySection() {
     const first = el.querySelector(".snap-start") as HTMLElement | null;
     const step = first ? first.offsetWidth + 16 : el.clientWidth * 0.75;
     el.scrollBy({ left: dir * step, behavior: "smooth" });
+  };
+
+  const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    dragStart.current = {
+      x: e.pageX,
+      scrollLeft: scrollRef.current?.scrollLeft ?? 0,
+    };
+    (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
+  };
+
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!dragStart.current || !scrollRef.current) return;
+    const delta = e.pageX - dragStart.current.x;
+    scrollRef.current.scrollLeft = dragStart.current.scrollLeft - delta;
+  };
+
+  const handlePointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
+    dragStart.current = null;
+    (e.currentTarget as HTMLElement).releasePointerCapture(e.pointerId);
+  };
+
+  const handlePointerCancel = (e: React.PointerEvent<HTMLDivElement>) => {
+    dragStart.current = null;
+    (e.currentTarget as HTMLElement).releasePointerCapture(e.pointerId);
   };
 
   return (
@@ -62,8 +87,13 @@ export default function GallerySection() {
           {/* Slider */}
           <div
             ref={scrollRef}
-            className="no-scrollbar flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-px-6 pb-2"
-            style={{ touchAction: "pan-y" }}
+            className="no-scrollbar flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-px-6 pb-2 cursor-grab active:cursor-grabbing"
+            style={{ touchAction: "none" }}
+            onPointerDown={handlePointerDown}
+            onPointerMove={handlePointerMove}
+            onPointerUp={handlePointerUp}
+            onPointerCancel={handlePointerCancel}
+            onPointerLeave={handlePointerCancel}
           >
             {photos.map((photo, idx) => (
               <div
